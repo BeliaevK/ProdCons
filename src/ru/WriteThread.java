@@ -9,7 +9,7 @@ import java.util.Random;
 public class WriteThread extends Thread {
     private Queue queue;
     private Random random = new Random();
-    ArrayList<Integer> list;
+    private ArrayList<Integer> list;
 
     public WriteThread(String name,Queue queue, ArrayList<Integer> list) {
         super(name);
@@ -25,11 +25,11 @@ public class WriteThread extends Thread {
         while (true){
             while (true){
                 try {
-                    for (int i = 0; i < 4; i++) {
+                    for (int i = 0; i < random.nextInt(5); i++) {
                     queue.setElement(i);
                         System.out.println("Добавлен элемент: " + i +"; " + "Длина массива: " + list.size());
                     }
-                    Thread.sleep(5000);
+                    Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     System.out.println("Исключение типа InterruptedException перехвачено");
                 }

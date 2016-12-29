@@ -16,9 +16,13 @@ public class Queue {
         list.add(element);
     }
 
-    public Integer getElement() {
+    public Integer getElement(int integer) {
         if (list.size() > 0){
-            return list.remove(0);
+            try {
+                return list.remove(integer);
+            }catch (IndexOutOfBoundsException e){
+                System.out.println("Нет такой позиции");
+            }
         }
         return null;
     }

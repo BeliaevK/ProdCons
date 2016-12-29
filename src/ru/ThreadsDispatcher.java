@@ -7,7 +7,7 @@ import java.util.List;
  * Created by Scala on 28.12.2016.
  */
 public class ThreadsDispatcher extends Thread  {
-    private List<Integer> list;
+    private ArrayList<Integer> list;
     private final Queue queue;
 
     public ThreadsDispatcher(String name, Queue queue, ArrayList<Integer> list) {
@@ -24,6 +24,8 @@ public class ThreadsDispatcher extends Thread  {
             while (true) {
                 if (list.size() > 0) {
                     queue.notifyAll();
+                    System.out.println("Я тут!!!!!!!");
+                    System.out.println(isAlive());
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
