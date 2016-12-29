@@ -1,16 +1,15 @@
 package ru;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Scala on 28.12.2016.
  */
 public class Queue {
-    private List<Integer> list;
+    private ArrayList<Integer> list;
 
-    public Queue() {
-        list = new  ArrayList<Integer>();
+    public Queue(ArrayList<Integer> list) {
+        this.list = list;
     }
 
     public void setElement(Integer element){
