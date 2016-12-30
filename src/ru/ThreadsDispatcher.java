@@ -1,7 +1,6 @@
 package ru;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Scala on 28.12.2016.
@@ -21,18 +20,21 @@ public class ThreadsDispatcher extends Thread  {
     public void run() {
         synchronized (queue) {
             System.out.println(getName() + ", запущен.");
+            try {
             while (true) {
                 if (list.size() > 0) {
                     queue.notifyAll();
                     System.out.println("Я тут!!!!!!!");
-                    System.out.println(isAlive());
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    Thread.sleep(1000);
+                   // System.out.println(isAlive());
+                }else {
+                    Thread.sleep(1000);
                 }
+
             }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
+}
 }
