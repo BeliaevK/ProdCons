@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Queue {
     private ArrayList<Integer> list;
     private boolean valueSet =  false;
-    Integer element;
+    private Integer element;
 
     public Queue(ArrayList<Integer> list) {
         this.list = list;
