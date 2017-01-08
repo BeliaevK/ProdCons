@@ -10,6 +10,7 @@ public class WriteThread extends Thread {
     private Queue queue;
     private Random random = new Random();
     private ArrayList<Integer> list;
+    private int count;
 
     public WriteThread(String name,Queue queue, ArrayList<Integer> list) {
         super(name);
@@ -21,19 +22,18 @@ public class WriteThread extends Thread {
 
     @Override
     public void run() {
-
-        while (true){
-            while (true){
+            while (true) {
                 try {
                     for (int i = 0; i < random.nextInt(5); i++) {
-                    queue.setElement(i);
-                        System.out.println("Добавлен элемент: " + i +"; " + "Длина массива: " + list.size());
+                        count++;
+                       // list.add(count);
+                        queue.setElement(count);
+                        System.out.println("Добавлен элемент: " + count + "; " + "Длина массива: " + list.size());
                     }
-                    Thread.sleep(3000);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     System.out.println("Исключение типа InterruptedException перехвачено");
                 }
             }
-        }
     }
 }

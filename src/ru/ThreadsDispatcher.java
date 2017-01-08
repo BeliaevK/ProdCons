@@ -6,9 +6,11 @@ import java.util.List;
 /**
  * Created by Scala on 28.12.2016.
  */
-public class ThreadsDispatcher extends Thread  {
+public class ThreadsDispatcher extends Thread {
     private ArrayList<Integer> list;
     private final Queue queue;
+   // Thread.State ts = ReaderThread.currentThread().getState();
+
 
     public ThreadsDispatcher(String name, Queue queue, ArrayList<Integer> list) {
         super(name);
@@ -19,20 +21,21 @@ public class ThreadsDispatcher extends Thread  {
 
     @Override
     public void run() {
-        synchronized (queue) {
+      // synchronized (queue) {
             System.out.println(getName() + ", запущен.");
             while (true) {
-                if (list.size() > 0) {
-                    queue.notifyAll();
-                    System.out.println("Я тут!!!!!!!");
-                    System.out.println(isAlive());
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                //System.out.println(ts);
+                //if(ts == Thread.State.RUNNABLE )
+                    if (list.size() > 0) {
+                        queue.checkElement();
                     }
-                }
+/*                try {
+                    Thread.sleep(100000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }*/
             }
-        }
+
+      // }
     }
 }

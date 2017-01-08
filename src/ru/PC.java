@@ -10,11 +10,11 @@ public class PC {
     public static void main(String[] args) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         Queue queue = new Queue(list);
-        new WriteThread("Заполняющий поток",queue,list);
-        new ReaderThread("Забирающий поток-1",queue,list,0);
-        new ReaderThread("Забирающий поток-2",queue,list,1);
-        new ReaderThread("Забирающий поток-3",queue,list,2);
         new ThreadsDispatcher("Проверяющий поток",queue,list);
+        for (int i = 1; i < 4; i++) {
+            new ReaderThread("Забирающий поток-" + i,queue);
+        }
+        new WriteThread("Заполняющий поток",queue,list);
     }
 }
    /* Техническое задание.z
