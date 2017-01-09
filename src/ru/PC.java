@@ -10,7 +10,7 @@ public class PC {
     public static void main(String[] args) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         Queue queue = new Queue(list);
-        new ThreadsDispatcher("Проверяющий поток",queue,list);
+        new ThreadsDispatcher("Проверяющий поток",queue);
         for (int i = 1; i < 4; i++) {
             new ReaderThread("Забирающий поток-" + i,queue);
         }

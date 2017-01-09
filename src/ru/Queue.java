@@ -9,6 +9,7 @@ public class Queue {
     private ArrayList<Integer> list;
     private boolean valueSet =  false;
     private Integer element;
+    private Integer number;
 
     public Queue(ArrayList<Integer> list) {
         this.list = list;
@@ -19,34 +20,44 @@ public class Queue {
         list.add(element);
     }
 
-    synchronized void checkElement (){
+    synchronized void checkElement (String name) throws InterruptedException {
         while (!valueSet)
             try {
+                if (list.get(0) != null) {
+                    valueSet = true;
+                    notify();
+                   // wait();
+                }
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println(name + ", ждет пока очередь заполнится.");
+                valueSet = true;
                 wait();
-            } catch (InterruptedException e) {
-                System.out.println("Исключение типа InterruptedException перехвачено");
+                notify();
             }
-
-            valueSet = true;
-            notifyAll();
     }
 
-    synchronized Integer getElement() {
-        while (valueSet)
+    synchronized void getElement(String name) throws InterruptedException {
+        while (valueSet) {
             try {
+            if (list.get(0) == null){
+                System.out.println(name + ", ждет пока очередь заполнится>>>.");
+                valueSet = false;
+                notify();
                 wait();
-            } catch (InterruptedException e) {
-                System.out.println("Исключение типа InterruptedException перехвачено");
             }
-        valueSet = false;
-        notifyAll();
-        if (list.size() > 0){
-            try {
-                return list.remove(0);
-            }catch (IndexOutOfBoundsException e){
-                System.out.println("Нет такой позиции");
+            if (list.size() > 0) {
+                System.out.println(name + ", возобновил работу.");
+                System.out.println(name + ", извлек число " + list.remove(0));
+                //valueSet = false;
+                }
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println(name + ", ждет пока очередь заполнится.");
+                valueSet = false;
+                wait();
+                notify();
+
             }
         }
-        return null;
     }
 }
+

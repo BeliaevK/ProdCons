@@ -26,11 +26,10 @@ public class WriteThread extends Thread {
                 try {
                     for (int i = 0; i < random.nextInt(5); i++) {
                         count++;
-                       // list.add(count);
                         queue.setElement(count);
                         System.out.println("Добавлен элемент: " + count + "; " + "Длина массива: " + list.size());
                     }
-                    Thread.sleep(500);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     System.out.println("Исключение типа InterruptedException перехвачено");
                 }
