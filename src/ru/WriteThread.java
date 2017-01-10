@@ -24,7 +24,7 @@ public class WriteThread extends Thread {
     public void run() {
             while (true) {
                 try {
-                    for (int i = 0; i < random.nextInt(5); i++) {
+                    for (int i = 0; i < random.nextInt(10); i++) {
                         count++;
                         queue.setElement(count);
                         System.out.println("Добавлен элемент: " + count + "; " + "Длина массива: " + list.size());
