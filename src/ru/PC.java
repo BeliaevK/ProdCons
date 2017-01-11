@@ -6,7 +6,6 @@ import java.util.ArrayList;
  * Created by Scala on 28.12.2016.
  */
 public class PC {
-
     public static void main(String[] args) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         Queue queue = new Queue(list);

@@ -21,7 +21,7 @@ public class Queue {
         while (!valueSet)
             try {
                 if (list.get(0) != null) {
-                    Thread.sleep(1000);
+                   // Thread.sleep(1000);
                     valueSet = true;
                     notifyAll();
                     wait();
@@ -55,7 +55,7 @@ public class Queue {
                 System.out.println(name + ", ждет пока очередь заполнится.");
                 valueSet = false;
               //  System.out.println(name + ", до notify");
-                notify();
+                notifyAll();
                // System.out.println(name + ", после notify");
                // System.out.println(name + ", до wait");
                 wait();
